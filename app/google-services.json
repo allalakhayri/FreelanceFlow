@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "927017637297",
+    "project_id": "freelanceflowauthentification",
+    "storage_bucket": "freelanceflowauthentification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927017637297:android:9a8ebd20d8b39adc6f9990",
+        "android_client_info": {
+          "package_name": "com.example.freelanceflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927017637297-ifk1qmslvkhu6lbs12o8ev92os8mjek4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWpyKhZYo7VhSb45VgLmmluOyvACeT9oM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927017637297-ifk1qmslvkhu6lbs12o8ev92os8mjek4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
