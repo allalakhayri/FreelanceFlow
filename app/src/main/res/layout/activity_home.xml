@@ -20,6 +20,7 @@
         android:textSize="65sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="270dp"></TextView>
+        tools:layout_editor_absoluteY="270dp"
+        tools:ignore="MissingConstraints"></TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

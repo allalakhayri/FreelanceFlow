@@ -30,9 +30,9 @@ class SignInActivity : AppCompatActivity() {
                     if(it.isSuccessful){
                         Toast.makeText(this,"Sign in successfully!", Toast.LENGTH_SHORT).show()
                         //go to another activity (Home)
-                        // val intent=Intent(this, ClientSetupProfile::class.java)
+                        //val intent=Intent(this, MainActivity::class.java)
                         //startActivity(intent)
-                        //finish()
+                    //    finish()
                     }
                     else {
                         Log.e("Error", it.exception.toString())

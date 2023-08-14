@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/jobFragment"
+    android:id="@+id/navgraph">
+    <fragment
+        android:id="@+id/blogsFragment"
+        android:name="com.example.freelanceflow.fragments.BlogsFragment"
+        android:label="fragment_blogs"
+        tools:layout="@layout/fragment_blogs" >
+        <action
+            android:id="@+id/action_blogsFragment_to_newsDetails"
+            app:destination="@id/newsDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/jobFragment"
+        android:name="com.example.freelanceflow.fragments.JobFragment"
+        android:label="fragment_job"
+        tools:layout="@layout/fragment_job" >
+        <action
+            android:id="@+id/action_jobFragment_to_jobDetailsFragment"
+            app:destination="@id/jobDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/connectFragment"
+        android:name="com.example.freelanceflow.fragments.ConnectFragment"
+        android:label="fragment_connect"
+        tools:layout="@layout/fragment_connect" >
+        <action
+            android:id="@+id/action_connectFragment_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
+        <action
+            android:id="@+id/action_connectFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.freelanceflow.fragments.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_onBoardingActivity"
+            app:destination="@id/onBoardingActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/jobDetailsFragment"
+        android:name="com.example.freelanceflow.fragments.JobDetailsFragment"
+        android:label="fragment_job_details"
+        tools:layout="@layout/fragment_job_details" >
+        <argument
+            android:name="job"
+            app:argType="com.example.codestack.api.Job"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetails"
+        android:name="com.example.freelanceflow.fragments.NewsDetails"
+        android:label="NewsDetails" >
+        <argument
+            android:name="news"
+            app:argType="com.example.codestack.newsapi.Article"
+            app:nullable="true" />
+    </fragment>
+    <activity
+        android:id="@+id/onBoardingActivity"
+        android:name="com.example.freelanceflow.activities.OnBoardingActivity"
+        android:label="OnBoardingActivity" />
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.freelanceflow.fragments.AddPostFragment"
+        android:label="AddPostFragment" />
+    <fragment
+        android:id="@+id/resumeFragment"
+        android:name="com.example.freelanceflow.fragments.ResumeFragment"
+        android:label="fragment_resume"
+        tools:layout="@layout/fragment_resume" />
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="com.example.freelanceflow.fragments.PostDetailsFragment"
+        android:label="fragment_post_details"
+        tools:layout="@layout/fragment_post_details" >
+        <argument
+            android:name="post"
+            app:argType="com.example.codestack.users.Post" />
+        <argument
+            android:name="postKey"
+            app:argType="string" />
+    </fragment>
+</navigation>
