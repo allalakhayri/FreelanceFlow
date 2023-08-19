@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp">
-
+   >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
     <ImageView
         android:id="@+id/logo"
         android:layout_width="150dp"
         android:layout_height="110dp"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="2dp" />
 
     <TextView
         android:id="@+id/createNewAccountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/logo"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:textColor="@color/secondry_color"
         android:text="Sign up "
         android:textSize="34sp"
@@ -31,12 +34,16 @@
         android:gravity="center"
         android:layout_centerHorizontal="true" />
 
+
+
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/createNewAccountText"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="55dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +63,7 @@
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
         android:layout_below="@id/textInputLayoutEmail"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="25dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
@@ -77,7 +84,7 @@
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
         android:layout_below="@id/textInputLayoutPassword"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="25dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etConfirmPassword"
@@ -96,7 +103,7 @@
         android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80mm"
+        android:layout_marginTop="70mm"
         android:backgroundTint="@color/secondry_color"
         android:text="Sign Up"
         android:textSize="20sp"
@@ -114,7 +121,7 @@
         android:text="Already have an account? Sign In"
         android:gravity="center_horizontal"
         android:textColor="@color/primary_color"
-        android:layout_marginTop="590dp"
+        android:layout_marginTop="530dp"
         android:textSize="15sp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-condensed"
@@ -123,5 +130,6 @@
         android:layout_centerHorizontal="true" >
     </TextView>
 
+    </RelativeLayout>
 
-</RelativeLayout>
+</ScrollView>

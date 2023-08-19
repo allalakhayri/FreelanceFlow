@@ -12,7 +12,7 @@ import coil.load
 import com.example.freelanceflow.R
 import com.example.freelanceflow.api.Job
 import com.example.freelanceflow.databinding.JobLayoutAdpaterBinding
-
+import com.example.freelanceflow.fragments.JobFragmentDirections
 
 
 class RemoteJobAdapter: ListAdapter<Job, RemoteJobAdapter.RemoteJobViewHolder>(DiffUtilCallback()) {
@@ -34,8 +34,8 @@ class RemoteJobAdapter: ListAdapter<Job, RemoteJobAdapter.RemoteJobViewHolder>(D
                 image.load(it.company_logo_url)
 
                 itemView.setOnClickListener {
-                    //  val direction = JobFragmentDirections.actionJobFragmentToJobDetailsFragment(getItem(position))
-                    //it.findNavController().navigate(direction)
+                      val direction = JobFragmentDirections.actionJobFragmentToJobDetailsFragment(getItem(position))
+                    it.findNavController().navigate(direction)
                 }
             }
         }

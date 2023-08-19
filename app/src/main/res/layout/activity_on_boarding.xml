@@ -10,12 +10,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.activities.OnBoardingActivity">
+        tools:context=".activities.OnBoardingActivity">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/onBoardingViewPager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="400dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="8dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,12 +34,20 @@
             android:id="@+id/btnGetStarted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="get started"
+            android:layout_margin="45dp"
+            android:text="Get started"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:cornerRadius="16dp">
+            android:backgroundTint="@color/secondry_color"
+            app:cornerRadius="16dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="4dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true">
 
         </com.google.android.material.button.MaterialButton>
 

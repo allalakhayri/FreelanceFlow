@@ -13,29 +13,44 @@
         android:theme="@style/Theme.FreelanceFlow"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ExperienceEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EducationEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EditBaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BasicInfoEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ProjectEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DeveloperProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.OnBoardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ClientProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.StartScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-
-        <activity
-            android:name=".activities.ClientProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.StartScreenActivity"
-            android:exported="false">
-
-
-
         </activity>
 
         <activity

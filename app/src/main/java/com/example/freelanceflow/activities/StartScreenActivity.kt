@@ -20,17 +20,10 @@ class StartScreenActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            val user=auth.currentUser
-            if(user!=null) { // if there's an account already go to home
-                //val intent= Intent(this, HomeActivity::class.java)
-                //startActivity(intent)
-                //finish()
-
-            }else { // go to sign in screen
-                val intent= Intent(this, MainActivity::class.java)
+             // if there's an account already go to home
+                val intent= Intent(this, OnBoardingActivity::class.java)
                 startActivity(intent)
                 finish()
-            }
 
         },3000 )
 

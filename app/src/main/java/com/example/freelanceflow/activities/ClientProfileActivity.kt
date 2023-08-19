@@ -28,16 +28,16 @@ class ClientProfileActivity : AppCompatActivity() {
         val countryAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, countries)
 
         // Set adapters for spinners
-        binding.languageSpinner.adapter = languageAdapter
-        binding.genderSpinner.adapter = genderAdapter
-        binding.countrySpinner.adapter = countryAdapter
+       // binding.languageSpinner.adapter = languageAdapter
+       // binding.genderSpinner.adapter = genderAdapter
+        //binding.countrySpinner.adapter = countryAdapter
 
         // Save Profile button click listener
-        binding.saveProfileBtn.setOnClickListener {
-            Toast.makeText(this,"Success !", Toast.LENGTH_SHORT).show()
+        //binding.saveProfileBtn.setOnClickListener {
+          //  Toast.makeText(this,"Success !", Toast.LENGTH_SHORT).show()
 
 
-        }
+       // }
 }
 
 

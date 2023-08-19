@@ -2,30 +2,36 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
+
+
     <item android:id="@+id/jobFragment"
         android:title="Jobs"
         android:icon="@drawable/ic_baseline_job_24">
     </item>
 
-    <item android:id="@+id/resumeFragment"
-        android:title="Resume Builder"
+
+
+    <item android:id="@+id/postsFragment"
+        android:title="Blogs"
         android:icon="@drawable/ic_baseline_event_note_24">
     </item>
 
-    <item android:id="@+id/blogsFragment"
+    <item android:id="@+id/techNewsFragment"
         android:title="Tech News"
         android:icon="@drawable/ic_baseline_newspaper_24">
     </item>
 
-    <item android:id="@+id/connectFragment"
-        android:title="Connect"
-        android:icon="@drawable/ic_baseline_insert_photo_24">
+    <item android:id="@+id/messagesFragment"
+        android:title="Messages"
+        android:icon="@drawable/baseline_message_24">
     </item>
 
     <item android:id="@+id/accountFragment"
-        android:title="Account"
+        android:title="Profile"
         android:icon="@drawable/ic_baseline_account_box_24">
     </item>
+
+
 
 
 </menu>

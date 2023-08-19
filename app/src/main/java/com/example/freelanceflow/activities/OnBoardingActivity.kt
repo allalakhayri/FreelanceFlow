@@ -29,30 +29,27 @@ class OnBoardingActivity : AppCompatActivity() {
 
         adapter = OnBoardingItemsAdapter(
             listOf(
-                OnBoardingItems(
-                    onBoardingImage = R.drawable.resume,
-                    title = "Resume Builder",
-                    description = "Build a Developer Resume with\n our Resume Builder"
-                ),
+
                 OnBoardingItems(
                     onBoardingImage = R.drawable.job,
-                    title = "Job Search",
-                    description = "Find Developer Jobs\n via our app"
+                    title = "Find Interesting Projects",
+                    description = "Discover a world of captivating projects \n  tailored to your passions and expertise."
+                ),
+                OnBoardingItems(
+                    onBoardingImage = R.drawable.resume,
+                    title = "Build your Resume",
+                    description = "Craft a compelling resume by showcasing \n your contributions and accomplishments across the projects you engage with."
                 ),
                 OnBoardingItems(
                     onBoardingImage = R.drawable.blog,
-                    title = "Developer Blogs",
-                    description = "Explore Developer Blogs such as Roadmaps, tips and tricks etc."
+                    title = "Write your Blogs ",
+                    description = "Share your insights, experiences, and expertise \n by creating engaging blogs that inspire and inform."
                 ),
-                OnBoardingItems(
-                    onBoardingImage = R.drawable.connect,
-                    title = "Connect with Developers",
-                    description = "Connect with more Developers\n through Connect Section"
-                ),
+
                 OnBoardingItems(
                     onBoardingImage = R.drawable.getstarted,
                     title = "Get Started",
-                    description = "Time to deep dive\n in our app"
+                    description = "Let's begin this journey together . \n  Hit the ground running and start exploring our platform's endless possibilities."
                 ),
             )
         )

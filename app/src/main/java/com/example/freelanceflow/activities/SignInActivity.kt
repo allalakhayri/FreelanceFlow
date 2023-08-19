@@ -30,9 +30,9 @@ class SignInActivity : AppCompatActivity() {
                     if(it.isSuccessful){
                         Toast.makeText(this,"Sign in successfully!", Toast.LENGTH_SHORT).show()
                         //go to another activity (Home)
-                        //val intent=Intent(this, MainActivity::class.java)
-                        //startActivity(intent)
-                    //    finish()
+                        val intent=Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                      finish()
                     }
                     else {
                         Log.e("Error", it.exception.toString())
@@ -44,7 +44,7 @@ class SignInActivity : AppCompatActivity() {
         }
 
         binding.tvSignUp.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }

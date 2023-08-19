@@ -28,9 +28,20 @@ class SignUpActivity:AppCompatActivity() {
                     if(it.isSuccessful){
                         Toast.makeText(this,"Account created successfully!",Toast.LENGTH_SHORT).show()
                         //go to another activity (Home)
-                         val intent=Intent(this, SignInActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        val isClientChecked = intent.getBooleanExtra("isClientChecked", false)
+                        val isDeveloperChecked = intent.getBooleanExtra("isDeveloperChecked", false)
+
+                        if(isClientChecked){
+                            val intent=Intent(this, ClientProfileActivity::class.java)
+                            startActivity(intent)
+                           // finish()
+                        }
+                        else if(isDeveloperChecked){
+                            val intent=Intent(this, DeveloperProfileActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+
                     }
                     else {
                         Log.e("Error" , it.exception.toString())

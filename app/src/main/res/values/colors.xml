@@ -4,6 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary_color">#336377</color>
     <color name="secondry_color">#E91D1D</color>
-    <color name="third_color">#94939A</color>
+    <color name="third_color">#F3E9E9ED</color>
     <color name="edittextstroke">#7084EF</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="user_picture_chooser_background">#33000000</color>
 </resources>

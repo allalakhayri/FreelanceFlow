@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.freelanceflow.activities.DeveloperProfileActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_medium"
+        android:orientation="vertical"
+        android:background="#E3E2E6"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/LoginText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="30dp"
+                android:textColor="@color/secondry_color"
+                android:text="Build Your Resume"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"/>
+
+            <LinearLayout
+                android:id="@+id/user_name_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/user_picture"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/caption_text_size"
+                    tools:text="Enter your basic \n Information "
+                    android:textColor="@color/primary_color"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageButton
+                    android:id="@+id/edit_basic_info"
+                    android:layout_width="@dimen/icon_button_size"
+                    android:layout_height="@dimen/icon_button_size"
+                    android:layout_marginLeft="@dimen/spacing_xsmall"
+                    android:background="?attr/selectableItemBackground"
+                    android:src="@drawable/ic_mode_edit_black_18dp"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textSize="20dp"
+                android:layout_below="@+id/user_name_layout"
+                android:layout_toLeftOf="@+id/user_picture"
+                tools:text=""
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/user_picture"
+                android:layout_width="@dimen/user_picture_size"
+                android:layout_height="@dimen/user_picture_size"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/user_ghost"
+                android:layout_marginTop="70dp"
+                android:contentDescription="@string/user_picture"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="25sp"
+                android:textAllCaps="true"
+                android:text="@string/section_education"
+                android:textStyle="bold"
+                android:textColor="@color/primary_color"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageButton
+                android:id="@+id/add_education_btn"
+                android:layout_width="@dimen/icon_button_size"
+                android:layout_height="@dimen/icon_button_size"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/add_education"
+                android:src="@drawable/ic_add_black_18dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/education_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="25sp"
+                android:textAllCaps="true"
+                android:text="@string/section_experience"
+                android:textStyle="bold"
+                android:textColor="@color/primary_color"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageButton
+                android:id="@+id/add_experience_btn"
+                android:layout_width="@dimen/icon_button_size"
+                android:layout_height="@dimen/icon_button_size"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/add_experience"
+                android:src="@drawable/ic_add_black_18dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/experience_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="52dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="25sp"
+                android:textAllCaps="true"
+                android:text="@string/section_projects"
+                android:textStyle="bold"
+                android:textColor="@color/primary_color"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageButton
+                android:id="@+id/add_project_btn"
+                android:layout_width="@dimen/icon_button_size"
+                android:layout_height="@dimen/icon_button_size"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/add_project"
+                android:src="@drawable/ic_add_black_18dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/project_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnResume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Generate resume"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:backgroundTint="@color/secondry_color"
+                android:layout_centerHorizontal="true">
+            </com.google.android.material.button.MaterialButton>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Get started"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:backgroundTint="@color/secondry_color"
+                android:layout_centerHorizontal="true">
+            </com.google.android.material.button.MaterialButton>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

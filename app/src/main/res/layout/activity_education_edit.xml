@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/spacing_medium"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/education_edit_school"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/education_edit_school_hint"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/education_edit_major"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/education_edit_major_hint"
+        android:minHeight="48dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/education_edit_start_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/start_date"
+            android:inputType="date"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <EditText
+            android:id="@+id/education_edit_end_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/end_date"
+            android:inputType="date"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/education_edit_courses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/education_edit_courses_hint"
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/education_edit_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_gravity="right"
+        android:text="@string/action_delete"
+        style="@style/AppTheme.TextView.DeleteButton"/>
+
+</LinearLayout>
