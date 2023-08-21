@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.freelanceflow.R
 import com.example.freelanceflow.databinding.ActivityDeveloperProfileBinding
+import com.example.freelanceflow.fragments.AccountFragment
 //import com.example.freelanceflow.databinding.ActivityDeveloperProfileBinding
 //import com.example.freelanceflow.databinding.ActivityHomeBinding
 import com.google.gson.reflect.TypeToken
@@ -78,6 +79,7 @@ class DeveloperProfileActivity : AppCompatActivity() {
         supportActionBar?.hide()
         loadData()
         setupUI()
+        openAccountFragment()
 
 
     }
@@ -356,6 +358,21 @@ class DeveloperProfileActivity : AppCompatActivity() {
                     p1?.continuePermissionRequest()
                 }
             }).check()
+    }
+
+    private fun openAccountFragment() {
+        val accountFragment = AccountFragment.newInstance(
+            basicInfo,
+            educations,
+            experiences,
+            projects
+        )
+
+        val fragmentManager = supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.fragmentContainer, accountFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 

@@ -27,6 +27,16 @@
         <action
             android:id="@+id/action_accountFragment_to_onBoardingActivity"
             app:destination="@id/onBoardingActivity" />
+        <action
+            android:id="@+id/action_accountFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment"/>
+
     </fragment>
     <fragment
         android:id="@+id/jobDetailsFragment"
@@ -101,5 +111,38 @@
             android:id="@+id/action_postsFragment_to_postDetailsFragment"
             app:destination="@id/postDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.freelanceflow.fragments.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile"/>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.freelanceflow.fragments.AboutFragment"
+        tools:layout="@layout/fragment_about">
+        <argument
+            android:name="basicInfo"
+            app:argType="com.example.freelanceflow.model.BasicInfo"
+             />
+        <argument
+            android:name="educations"
+            app:argType="androidx.core.util.Pair&lt;android.os.Parcelable&gt;[]"
+         />
+        <argument
+            android:name="experiences"
+            app:argType="androidx.core.util.Pair&lt;android.os.Parcelable&gt;[]"
+             />
+        <argument
+            android:name="projects"
+            app:argType="androidx.core.util.Pair&lt;android.os.Parcelable&gt;[]"
+             />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.freelanceflow.fragments.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 
 </navigation>
