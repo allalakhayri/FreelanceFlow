@@ -22,17 +22,24 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         auth=Firebase.auth
+        val sessionManager = SessionManager.getInstance(this)
         binding.btnSignIn.setOnClickListener{
             val email=binding.etEmail.text.toString()
             val password=binding.etPassword.text.toString()
             if(checkAllField()){
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
-                        Toast.makeText(this,"Sign in successfully!", Toast.LENGTH_SHORT).show()
-                        //go to another activity (Home)
-                        val intent=Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                      finish()
+                        val user = auth.currentUser
+                        user?.let {
+                            sessionManager.saveAuthToken(it.uid)
+
+
+                            Toast.makeText(this, "Sign in successfully!", Toast.LENGTH_SHORT).show()
+                            //go to another activity (Home)
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                     else {
                         Log.e("Error", it.exception.toString())

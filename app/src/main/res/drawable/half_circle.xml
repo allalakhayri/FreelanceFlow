@@ -32,7 +32,7 @@
         <shape xmlns:android="http://schemas.android.com/apk/res/android"
             android:shape="oval">
             <gradient
-                android:startColor="@color/primary_color"
+                android:startColor="@color/third_color"
                 android:endColor="@color/secondry_color"
                 android:gradientRadius="200"
                 android:type="linear" />

@@ -7,13 +7,16 @@ import java.util.Locale
 
 
 object DateUtils {
-    private val sdf = SimpleDateFormat("MM/yyyy", Locale.getDefault())
-    fun dateToString(date: Date?): String {
+    lateinit var sdf: SimpleDateFormat
+    fun dateToString(date: Date?, pattern: String = "MM/yyyy"): String {
+        sdf = SimpleDateFormat(pattern, Locale.getDefault())
         return sdf.format(date)
+
     }
 
-    fun stringToDate(dateString: String?): Date {
+    fun stringToDate(dateString: String?, pattern: String = "MM/yyyy"): Date {
         return try {
+            sdf = SimpleDateFormat(pattern, Locale.getDefault())
             sdf.parse(dateString)
         } catch (e: ParseException) {
             e.printStackTrace()

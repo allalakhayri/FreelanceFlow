@@ -61,4 +61,10 @@ object ModelUtils {
             return Uri.parse(src.asString)
         }
     }
+    fun clear(context: Context, key: String) {
+        val sp: SharedPreferences = context.applicationContext.getSharedPreferences(
+            PREF_NAME, Context.MODE_PRIVATE
+        )
+        sp.edit().remove(key).apply()
+    }
 }

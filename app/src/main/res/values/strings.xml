@@ -18,6 +18,10 @@
 
     <string name="basic_info_edit_email_hint">Your email</string>
     <string name="basic_info_edit_name_hint">Your name</string>
+    <string name="basic_info_edit_phone_hint">Your phone</string>
+    <string name="basic_info_edit_language_hint">Your language</string>
+    <string name="basic_info_edit_street_hint">Your street</string>
+    <string name="basic_info_edit_zipcode_hint">Your zipcode</string>
 
     <string name="add_education">Add education</string>
     <string name="add_experience">Add experience</string>
@@ -127,8 +131,20 @@
     <string name="commented_on">commented on</string>
     <string name="comment_text_will_display_here">Comment text will display here...</string>
     </string>
+    <string-array name="genders_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="languages_array">
+        <item>English</item>
+        <item>French</item>
+        <item>Spanish</item>
+        <!-- Add more languages as needed -->
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="todo">TODO</string>
-    <string name="add_your_post_description">Add your Post Description</string>
+    <string name="add_your_post_description">Add your Blog Description</string>
 </resources>

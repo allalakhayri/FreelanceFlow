@@ -6,11 +6,10 @@
     <data>
 
     </data>
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.TechNewsFragment">
+        tools:context=".ui.fragments.JobFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -23,13 +22,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="20dp"
                 app:layout_scrollFlags="scroll|enterAlways">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/toolbarConstraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/appTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Read TechNews"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_20sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_margin="@dimen/_8sdp">
+
+                    </com.google.android.material.textview.MaterialTextView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.MaterialToolbar>
@@ -60,23 +74,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/appTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="8dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="sans-serif-condensed"
-            android:gravity="center_horizontal"
-            android:letterSpacing="0.05"
-            android:lineSpacingExtra="4dp"
-            android:text="Tech News"
-            android:textColor="@color/secondry_color"
-            android:textSize="34sp"
-            android:textStyle="bold">
-
-        </com.google.android.material.textview.MaterialTextView>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

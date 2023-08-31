@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,6 +16,8 @@ import com.example.freelanceflow.R
 import com.example.freelanceflow.model.BasicInfo
 import com.example.freelanceflow.util.ImageUtils
 import com.example.freelanceflow.util.PermissionUtils
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class BasicInfoEditActivity : EditBaseActivity<BasicInfo>() {
 
@@ -45,11 +48,25 @@ class BasicInfoEditActivity : EditBaseActivity<BasicInfo>() {
         return R.layout.activity_basic_info_edit
     }
 
-    override fun setupUIForCreate() { }
+    override fun setupUIForCreate() {
+        findViewById<EditText>(R.id.basic_info_edit_name).setText("")
+        findViewById<EditText>(R.id.basic_info_edit_phone).setText("")
+        findViewById<EditText>(R.id.basic_info_edit_language).setText("")
+        findViewById<EditText>(R.id.basic_info_edit_street).setText("")
+        findViewById<EditText>(R.id.basic_info_edit_zipcode).setText("")
+
+        // Set other UI elements as needed for creating a new entry
+    }
 
     override fun setupUIForEdit(data: BasicInfo) {
         findViewById<EditText>(R.id.basic_info_edit_name).setText(data.name)
-        findViewById<EditText>(R.id.basic_info_edit_email).setText(data.email)
+        // findViewById<EditText>(R.id.basic_info_edit_email).setText(data.email)
+
+        findViewById<EditText>(R.id.basic_info_edit_phone).setText(data.phone)
+        findViewById<EditText>(R.id.basic_info_edit_language).setText(data.language)
+        findViewById<EditText>(R.id.basic_info_edit_street).setText(data.street)
+        findViewById<EditText>(R.id.basic_info_edit_zipcode).setText(data.zipcode)
+
 
         data.imageUri?.let { showImage(it) }
 
@@ -67,13 +84,24 @@ class BasicInfoEditActivity : EditBaseActivity<BasicInfo>() {
         val newData = data ?: BasicInfo()
 
         newData.name = findViewById<EditText>(R.id.basic_info_edit_name).text.toString()
-        newData.email = findViewById<EditText>(R.id.basic_info_edit_email).text.toString()
-        newData.imageUri = findViewById<ImageView>(R.id.basic_info_edit_image).tag as Uri?
+       // newData.email = findViewById<EditText>(R.id.basic_info_edit_email).text.toString()
+        newData.imageUri = findViewById<ImageView>(R.id.editProfilePic).tag as Uri?
+        newData.phone = findViewById<EditText>(R.id.basic_info_edit_phone).text.toString()
+        newData.language = findViewById<EditText>(R.id.basic_info_edit_language).text.toString()
+        newData.street = findViewById<EditText>(R.id.basic_info_edit_street).text.toString()
+        newData.zipcode = findViewById<EditText>(R.id.basic_info_edit_zipcode).text.toString()
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+
+            val databaseReference = FirebaseDatabase.getInstance().getReference("users")
+            databaseReference.setValue(newData)
+
 
         val resultIntent = Intent()
         resultIntent.putExtra(KEY_BASIC_INFO, newData)
         setResult(Activity.RESULT_OK, resultIntent)
+        Log.d("BasicInfoEditActivity", "New data: $newData")
         finish()
+
     }
 
     override fun initializeData(): BasicInfo? {
@@ -81,7 +109,7 @@ class BasicInfoEditActivity : EditBaseActivity<BasicInfo>() {
     }
 
     private fun showImage(imageUri: Uri) {
-        val imageView = findViewById<ImageView>(R.id.basic_info_edit_image)
+        val imageView = findViewById<ImageView>(R.id.editProfilePic)
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
 
         imageView.tag = imageUri

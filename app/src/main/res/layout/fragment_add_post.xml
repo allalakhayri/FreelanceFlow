@@ -9,15 +9,26 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardBackgroundColor="@color/third_color"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="5dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:layout_marginTop="15dp"
+          >
 
             <ImageView
                 android:id="@+id/addPostImage"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_180sdp"
+                android:layout_width="250dp"
+                android:layout_height="180dp"
                 android:src="@drawable/addimage"
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
@@ -27,53 +38,71 @@
             </ImageView>
 
             <EditText
+                android:id="@+id/postTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/edit_text_bg"
+            android:gravity="start"
+            android:inputType="text"
+                android:textColorHint="#000000"
+                android:hint="Title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addPostImage" />
+
+            <EditText
                 android:id="@+id/tvPostDescription"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_margin="@dimen/_16sdp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_bg"
                 android:gravity="start"
+                android:inputType="textAutoCorrect"
                 android:hint="@string/add_your_post_description"
-                android:textColorHint="#8D6E63"
+                android:textColorHint="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addPostImage"
+                app:layout_constraintTop_toBottomOf="@+id/postTitle" />
 
-                android:autofillHints=""></EditText>
-            <!--            <com.google.android.material.textfield.TextInputLayout-->
-            <!--                android:id="@+id/tvPostDescription"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="@dimen/_200sdp"-->
-            <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-            <!--                android:layout_margin="@dimen/_16sdp"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/addPostImage">-->
-            <!--                <com.google.android.material.textfield.TextInputEditText-->
-            <!--                    android:id="@+id/etName"-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="match_parent"-->
-            <!--                    android:hint="Enter Your Post Description"-->
-            <!--                    android:gravity="start"-->
-            <!--                    android:inputType="textCapWords">-->
-
-            <!--                </com.google.android.material.textfield.TextInputEditText>-->
-
-            <!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-
+            <EditText
+                android:id="@+id/postReadTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/edit_text_bg"
+                android:gravity="start"
+                android:inputType="numberDecimal"
+                android:hint="ReadTime"
+                android:textColorHint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPostDescription" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Post"
+                android:text="Add Blog"
+
+                android:backgroundTint="@color/secondry_color"
                 android:layout_margin="@dimen/_16sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPostDescription">
+                app:layout_constraintTop_toBottomOf="@+id/postReadTime">
 
             </com.google.android.material.button.MaterialButton>
+            <FrameLayout
+                android:id="@+id/loadingContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
 
+                <include layout="@layout/layout_loading" />
+            </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

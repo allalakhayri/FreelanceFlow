@@ -20,35 +20,41 @@ class SignUpActivity:AppCompatActivity() {
         setContentView(binding.root)
 
         auth=Firebase.auth
-        binding.btnSignUp.setOnClickListener{
-            val email=binding.etEmail.text.toString()
-            val password=binding.etPassword.text.toString()
-            if(checkAllField()){
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
-                    if(it.isSuccessful){
-                        Toast.makeText(this,"Account created successfully!",Toast.LENGTH_SHORT).show()
-                        //go to another activity (Home)
-                        val isClientChecked = intent.getBooleanExtra("isClientChecked", false)
-                        val isDeveloperChecked = intent.getBooleanExtra("isDeveloperChecked", false)
-
-                        if(isClientChecked){
-                            val intent=Intent(this, ClientProfileActivity::class.java)
-                            startActivity(intent)
-                           // finish()
-                        }
-                        else if(isDeveloperChecked){
-                            val intent=Intent(this, DeveloperProfileActivity::class.java)
+        val sessionManager = SessionManager.getInstance(this)
+        binding.btnSignUp.setOnClickListener {
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            if (checkAllField()) {
+                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val user = auth.currentUser
+                        user?.let {
+                            // Save the user's authentication token to the session
+                            sessionManager.saveAuthToken(it.uid)
+                            Toast.makeText(
+                                this,
+                                "Account created successfully!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            //go to another activity (Home)
+                            val isClientChecked = intent.getBooleanExtra("isClientChecked", false)
+                            val isDeveloperChecked =
+                                intent.getBooleanExtra("isDeveloperChecked", false)
+                            // Proceed to profile activity
+                            val intent = if (isClientChecked) {
+                                Intent(this, ClientProfileActivity::class.java)
+                            }
+                            else{
+                                Intent(this, DeveloperProfileActivity::class.java)
+                            }
                             startActivity(intent)
                             finish()
                         }
-
-                    }
-                    else {
-                        Log.e("Error" , it.exception.toString())
+                    } else {
+                        Log.e("Error", it.exception.toString())
                     }
                 }
             }
-
         }
 
 

@@ -1,54 +1,40 @@
 package com.example.freelanceflow.fragments
 
+import android.icu.text.CaseMap.Title
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.freelanceflow.R
 import com.example.freelanceflow.databinding.FragmentAddPostBinding
-import com.example.freelanceflow.users.Post
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
+import com.example.freelanceflow.viewmodels.AddPostViewModel
+import com.example.freelanceflow.viewmodels.AddPostViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class AddPostFragment : Fragment() {
+class AddPostFragment : Fragment(R.layout.fragment_add_post) {
     private lateinit var addPostBinding: FragmentAddPostBinding
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var auth: FirebaseAuth
-    private lateinit var root: DatabaseReference
-    private lateinit var storageReference: StorageReference
-    private var imageUri: Uri? = null
-    val isLiked = false
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_add_post, container, false)
-        addPostBinding = FragmentAddPostBinding.bind(view)
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        auth = FirebaseAuth.getInstance()
-        root = FirebaseDatabase.getInstance().getReference("Post")
-        storageReference = FirebaseStorage.getInstance().getReference("post_images")
-        //postDao = PostDao()
-
-
-
-        return view
-    }
+    private lateinit var viewModel: AddPostViewModel
+    private lateinit var imageUri: Uri
+    private var isAddingPost = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val  contracts = registerForActivityResult(ActivityResultContracts.GetContent()){
-            imageUri = it
+        addPostBinding = FragmentAddPostBinding.bind(view)
+        viewModel = ViewModelProvider(this, AddPostViewModelFactory(requireActivity().contentResolver))
+            .get(AddPostViewModel::class.java)
+
+        val contracts = registerForActivityResult(ActivityResultContracts.GetContent()) {
+            if (it != null) {
+                imageUri = it
+            }
             addPostBinding.addPostImage.setImageURI(imageUri)
         }
 
@@ -57,50 +43,36 @@ class AddPostFragment : Fragment() {
         }
 
         addPostBinding.btnPost.setOnClickListener {
-            val inputPost = addPostBinding.tvPostDescription.text.toString()
-            if (inputPost.isNotEmpty() && imageUri!= null){
-                uploadDataToFirebase(imageUri!!, inputPost)
-            }
-            else{
-                Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
-            }
-        }
+            if (!isAddingPost) {
 
-    }
+                isAddingPost = true
+                addPostBinding.btnPost.isEnabled = false
+                addPostBinding.loadingContainer.visibility = View.VISIBLE
 
-
-    private fun uploadDataToFirebase(imageUri: Uri, postDescription: String){
-        val fileReference = storageReference.child("${System.currentTimeMillis()}" + "." + getFileExtension(imageUri))
-        fileReference.putFile(imageUri).addOnSuccessListener { taskSnapshot ->
-            fileReference.downloadUrl.addOnSuccessListener {
-                val imageUrl = it.toString()
-                val reference = firebaseDatabase.getReference("Post").push()
-                val postKey = reference.key
-                activity?.intent?.putExtra("postKey", postKey)
-
-                val post = Post(
-                    postDescription,
-                    auth.currentUser!!.uid,
-                    auth.currentUser!!.email,
-                    imageUrl,
-                    postKey
-                )
-                if (postKey != null) {
-                    root.child(postKey).setValue(post)
+                val inputPost = addPostBinding.tvPostDescription.text.toString()
+                val readTimeString=addPostBinding.postReadTime.toString()
+                val title=addPostBinding.postTitle.text.toString()
+                val readTime = readTimeString.toIntOrNull() ?: 0
+                if (inputPost.isNotEmpty() && imageUri != null) {
+                    viewModel.addPost(imageUri,title,readTime,inputPost)
+                } else {
+                    Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+                    addPostBinding.loadingContainer.visibility = View.GONE
+                    addPostBinding.btnPost.isEnabled = true
                 }
-                Toast.makeText(context, "Post Added Successfully", Toast.LENGTH_SHORT).show()
             }
-        }.addOnFailureListener {
-            Toast.makeText(context, "Some Error Occurred: $it", Toast.LENGTH_LONG).show()
+        }
+
+        viewModel.postAdded.observe(viewLifecycleOwner) { isSuccess ->
+            addPostBinding.loadingContainer.visibility = View.GONE
+            if (isSuccess) {
+                Toast.makeText(context, "Blog Added Successfully", Toast.LENGTH_SHORT).show()
+                val direction = AddPostFragmentDirections.actionAddPostFragmentToPostsFragment()
+                findNavController().navigate(direction)
+            } else {
+                Toast.makeText(context, "Error Occurred", Toast.LENGTH_LONG).show()
+                addPostBinding.btnPost.isEnabled = true
+            }
         }
     }
-
-
-    private fun getFileExtension(imageUri: Uri): String? {
-        val contentResolver = context?.contentResolver
-        val mime = MimeTypeMap.getSingleton()
-        return mime.getExtensionFromMimeType(contentResolver!!.getType(imageUri))
-
-    }
-
 }

@@ -1,3 +1,4 @@
+
 package com.example.freelanceflow.activities
 
 
@@ -52,6 +53,7 @@ class EducationEditActivity : EditBaseActivity<Education>() {
         if (newData == null) {
             newData = Education()
         }
+
 
         newData.school = findViewById<EditText>(R.id.education_edit_school).text.toString()
         newData.major = findViewById<EditText>(R.id.education_edit_major).text.toString()

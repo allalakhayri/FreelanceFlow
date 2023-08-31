@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="@dimen/_16sdp"
         android:baselineAligned="false"
         android:layout_height="wrap_content">
 
@@ -32,6 +32,8 @@
                     android:drawablePadding="4dp"
                     android:layout_weight="1"
                     android:text="Today"
+                    android:textColor="@color/black"
+
                     android:textSize="15sp"
                     app:drawableStartCompat="@drawable/ic_baseline_calendar_month_24" />
 
@@ -55,6 +57,7 @@
                 android:drawablePadding="4dp"
                 android:text="job type"
                 android:textSize="15sp"
+                android:textColor="@color/black"
                 app:drawableStartCompat="@drawable/ic_baseline_access_time_filled_24" />
 
             <TextView
@@ -63,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Job location"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
         </LinearLayout>

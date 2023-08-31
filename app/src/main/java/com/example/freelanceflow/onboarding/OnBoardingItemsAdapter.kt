@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freelanceflow.R
-import com.example.freelanceflow.databinding.OnboardingItemContainerBinding
+import com.example.freelanceflow.databinding.OnboardingContainerItemBinding
 
 
 class OnBoardingItemsAdapter(private val onBoardingItems: List<OnBoardingItems>): RecyclerView.Adapter<OnBoardingItemsAdapter.OnBoardingItemsViewHolder>() {
@@ -13,7 +13,7 @@ class OnBoardingItemsAdapter(private val onBoardingItems: List<OnBoardingItems>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingItemsViewHolder {
         return OnBoardingItemsViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.onboarding_item_container, parent, false)
+                .inflate(R.layout.onboarding_container_item, parent, false)
         )
     }
 
@@ -28,8 +28,8 @@ class OnBoardingItemsAdapter(private val onBoardingItems: List<OnBoardingItems>)
     }
 
     inner class OnBoardingItemsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val onBoardingItemsBinding: OnboardingItemContainerBinding =
-            OnboardingItemContainerBinding.bind(view)
+        private val onBoardingItemsBinding: OnboardingContainerItemBinding =
+            OnboardingContainerItemBinding.bind(view)
         private val imgOnBoarding = onBoardingItemsBinding.imgOnBoarding
         private val title = onBoardingItemsBinding.tvHeading
         private val description = onBoardingItemsBinding.tvDescription

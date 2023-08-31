@@ -7,8 +7,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-
-
+import android.widget.Filter
+import android.widget.Filterable
 import com.example.freelanceflow.R
 import com.example.freelanceflow.api.Job
 import com.example.freelanceflow.databinding.JobLayoutAdpaterBinding
@@ -16,7 +16,34 @@ import com.example.freelanceflow.fragments.JobFragmentDirections
 
 
 class RemoteJobAdapter: ListAdapter<Job, RemoteJobAdapter.RemoteJobViewHolder>(DiffUtilCallback()) {
+    private var jobListFull: List<Job> = ArrayList()
+    init {
+        jobListFull = currentList
+    }
+    fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val filteredList = ArrayList<Job>()
+                if (constraint.isNullOrEmpty()) {
+                    filteredList.addAll(jobListFull)
+                } else {
+                    val filterPattern = constraint.toString().toLowerCase().trim()
+                    for (item in jobListFull) {
+                        if (item.title.toLowerCase().contains(filterPattern)) {
+                            filteredList.add(item)
+                        }
+                    }
+                }
+                val results = FilterResults()
+                results.values = filteredList
+                return results
+            }
 
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                submitList(results?.values as List<Job>)
+            }
+        }
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RemoteJobViewHolder {
         return RemoteJobViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.job_layout_adpater, parent, false)
@@ -34,7 +61,7 @@ class RemoteJobAdapter: ListAdapter<Job, RemoteJobAdapter.RemoteJobViewHolder>(D
                 image.load(it.company_logo_url)
 
                 itemView.setOnClickListener {
-                      val direction = JobFragmentDirections.actionJobFragmentToJobDetailsFragment(getItem(position))
+                     val direction = JobFragmentDirections.actionJobFragmentToJobDetailsFragment(getItem(position))
                     it.findNavController().navigate(direction)
                 }
             }

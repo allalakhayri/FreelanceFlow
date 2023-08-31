@@ -66,7 +66,11 @@
         android:id="@+id/addPostFragment"
         android:name="com.example.freelanceflow.fragments.AddPostFragment"
         android:label="AddPostFragment"
-        tools:layout="@layout/fragment_add_post"/>
+        tools:layout="@layout/fragment_add_post">
+        <action
+            android:id="@+id/action_addPostFragment_to_postsFragment"
+            app:destination="@id/postsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/postDetailsFragment"
@@ -125,18 +129,7 @@
             android:name="basicInfo"
             app:argType="com.example.freelanceflow.model.BasicInfo"
              />
-        <argument
-            android:name="educations"
-            app:argType="androidx.core.util.Pair&lt;android.os.Parcelable&gt;[]"
-         />
-        <argument
-            android:name="experiences"
-            app:argType="androidx.core.util.Pair&lt;android.os.Parcelable&gt;[]"
-             />
-        <argument
-            android:name="projects"
-            app:argType="androidx.core.util.Pair&lt;android.os.Parcelable&gt;[]"
-             />
+
     </fragment>
 
     <fragment
@@ -144,5 +137,6 @@
         android:name="com.example.freelanceflow.fragments.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+
 
 </navigation>

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/third_color">
 
     <ImageView
         android:id="@+id/logo"
@@ -41,6 +42,7 @@
         android:fontFamily="sans-serif-condensed"
         android:letterSpacing="0.05"
         android:lineSpacingExtra="4dp"
+        android:textColor="@color/primary_color"
         />
     <RadioButton
         android:id="@+id/developer_checkbox"
@@ -54,6 +56,7 @@
         android:fontFamily="sans-serif-condensed"
         android:letterSpacing="0.05"
         android:lineSpacingExtra="4dp"
+        android:textColor="@color/primary_color"
         android:text="I'm a developer \n looking for projects to accomplish"/>
 
 

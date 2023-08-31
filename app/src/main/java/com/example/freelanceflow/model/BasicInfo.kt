@@ -6,11 +6,19 @@ import android.os.Parcelable
 
 class BasicInfo(
     var name: String? = null,
+    var phone:String?=null,
+    var language:String?=null,
+    var street :String?=null,
+    var zipcode:String?=null,
     var email: String? = null,
     var imageUri: Uri? = null
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readParcelable(Uri::class.java.classLoader)

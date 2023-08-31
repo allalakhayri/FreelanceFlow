@@ -1,111 +1,116 @@
 package com.example.freelanceflow.fragments
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import com.example.freelanceflow.R
+import com.example.freelanceflow.databinding.FragmentEditProfileBinding
+import com.example.freelanceflow.model.ClientProfile
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import de.hdodenhof.circleimageview.CircleImageView
+import com.google.firebase.database.ValueEventListener
+
 
 class EditProfileFragment : Fragment() {
-    private val PICK_IMAGE_REQUEST = 1
-    private lateinit var storageReference: StorageReference
 
-
-    private lateinit var profileImage: CircleImageView
-    private lateinit var profileName: EditText
-    private lateinit var profilePhone: EditText
-    private lateinit var profileStreet: EditText
-    private lateinit var profileZipCode: EditText
-    private lateinit var profileLanguage: EditText
-    private lateinit var radioGroupGender: RadioGroup
-    private lateinit var saveButton: Button
-
+    private lateinit var binding: FragmentEditProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
+        binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        storageReference = FirebaseStorage.getInstance().reference.child("profile_images")
+        // Retrieve the user's profile information from the database
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+        currentUserUid?.let { uid ->
+            val databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid)
+            databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val userProfile = snapshot.getValue(ClientProfile::class.java)
 
-        profileImage = view.findViewById(R.id.editProfileImage)
-        profileName = view.findViewById(R.id.editProfileName)
-        profilePhone = view.findViewById(R.id.editProfilePhone)
-        profileStreet = view.findViewById(R.id.editProfileStreet)
-        profileZipCode = view.findViewById(R.id.editProfileZipCode)
-        profileLanguage = view.findViewById(R.id.editProfileLanguage)
-        radioGroupGender = view.findViewById(R.id.radioGroupGender)
-        saveButton = view.findViewById(R.id.saveButton)
+                        // Populate the EditText fields with the retrieved data
+                        binding.tvClientName.text = userProfile?.name
+                        binding.editProfilePhone.setText(userProfile?.mobileNumber)
+                        binding.editProfileStreet.setText(userProfile?.streetAddress)
+                        binding.editProfileCity.setText(userProfile?.city)
+                        // Set the selected values for the Spinners
+                        val genderAdapter = ArrayAdapter.createFromResource(
+                            requireContext(),
+                            R.array.genders_array,
+                            android.R.layout.simple_spinner_item
+                        )
+                        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        binding.spinnerGender.adapter = genderAdapter
+                        val genderPosition = genderAdapter.getPosition(userProfile?.gender)
+                        binding.spinnerGender.setSelection(genderPosition)
+                        //
+                        val languageAdapter = ArrayAdapter.createFromResource(
+                            requireContext(),
+                            R.array.languages_array,
+                            android.R.layout.simple_spinner_item
+                        )
+                        languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        binding.spinnerLanguage.adapter = languageAdapter
+                        val languagePosition = languageAdapter.getPosition(userProfile?.language)
+                        binding.spinnerLanguage.setSelection(languagePosition)
 
-        // Set click listener for changing profile photo
-        profileImage.setOnClickListener {
-            val galleryIntent =
-                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
-        }
-
-
-        saveButton.setOnClickListener {
-            // Save the edited profile information
-            // You can implement your logic here
-
-            // After saving, navigate back to the previous fragment
-            parentFragmentManager.popBackStack()
-        }
-
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
-            val selectedImage = data.data
-
-            val imageRef = storageReference.child("${System.currentTimeMillis()}.jpg")
-
-            val uploadTask = selectedImage?.let { imageRef.putFile(it) }
-            uploadTask?.addOnSuccessListener {
-
-
-                imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
-                    val imageUrl = downloadUri.toString()
-
-                    val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
-                    currentUserUid?.let { uid ->
-                        val databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid)
-                        databaseReference.child("profileImageUrl").setValue(imageUrl)
-                            .addOnSuccessListener {
-                                Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show()
-
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show()
-
-                            }
                     }
                 }
-            }?.addOnFailureListener {
-                Toast.makeText(context, "No image uploaded!", Toast.LENGTH_SHORT).show()
 
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle the error
+                }
+            })
+        }
+
+
+        // Set up other UI components and handle user interactions here
+        binding.btnSaveProfile.setOnClickListener {
+            val newProfile = ClientProfile(
+                profileImageUri = null, // Set the new profile image URI if applicable
+                name = binding.tvClientName.text.toString(),
+                mobileNumber = binding.editProfilePhone.text.toString(),
+                streetAddress = binding.editProfileStreet.text.toString(),
+                city = binding.editProfileCity.text.toString(),
+                language = binding.spinnerLanguage.selectedItem.toString(),
+                gender = binding.spinnerGender.selectedItem.toString()
+            )
+
+            val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+            currentUserUid?.let { uid ->
+                val databaseReference =
+                    FirebaseDatabase.getInstance().getReference("users").child(uid)
+                databaseReference.setValue(newProfile)
+                    .addOnSuccessListener {
+                        Toast.makeText(
+                            context,
+                            "Profile updated successfully !",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        parentFragmentManager.popBackStack()
+
+
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context, "Please fill all the fields!", Toast.LENGTH_SHORT)
+                            .show()
+
+                    }
             }
         }
     }
-}
+    }
+
+

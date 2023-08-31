@@ -2,7 +2,10 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <item android:id="@+id/homeFragment"
+        android:title="Home"
+        >
+    </item>
     <item android:id="@+id/jobFragment"
         android:title="Jobs"
       >
@@ -17,10 +20,7 @@
         android:title="Tech News">
     </item>
 
-    <item android:id="@+id/messagesFragment"
-        android:title="Messages"
-     >
-    </item>
+
 
     <item android:id="@+id/accountFragment"
         android:title="Profile"

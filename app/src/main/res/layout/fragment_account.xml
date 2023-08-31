@@ -5,7 +5,8 @@
     android:fitsSystemWindows="true"
     android:paddingBottom="40dp"
     android:background="#ffff"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <RelativeLayout
         android:id="@+id/fragmentContainer"
@@ -24,11 +25,12 @@
             android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
             android:gravity="center"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="ExtraText">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/Iconimage2"
+                android:id="@+id/profileImage"
                 android:layout_width="105dp"
                 android:layout_centerHorizontal="true"
                 android:layout_height="105dp"
@@ -36,121 +38,145 @@
                 android:layout_marginTop="55dp"
                 android:layout_marginStart="40dp"
                 android:scaleType="centerCrop"
-
                 app:civ_border_width="5dp"
-                app:civ_border_color="@color/black"/>
+                app:civ_border_color="@color/primary_color"
+                android:src="@drawable/man_pic"/>
 
             <TextView
-                android:layout_below="@+id/Iconimage2"
+                android:layout_below="@+id/profileImage"
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#ffff"
+                android:textColor="@color/third_color"
                 android:gravity="center"
-
+                android:text="Hello, Khayri"
                 android:layout_marginEnd="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="45dp"
                 android:layout_centerHorizontal="true"
-                android:textSize="16sp"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
 
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/circleLayouts"
-            android:layout_below="@+id/imagelayout"
-            android:layout_marginTop="-20dp"
-            android:layout_centerInParent="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imagelayout"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="-20dp">
 
             <at.markushi.ui.CircleButton
                 android:id="@+id/AboutButton"
-                android:layout_marginTop="34dp"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
-                app:cb_color="#efefef"
-                android:contentDescription="About"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="34dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="About"
                 android:elevation="5dp"
-                app:cb_pressedRingWidth="3dip"
                 android:src="@drawable/ic_about"
-                android:tint="@color/colorPrimary"
-                android:layout_marginEnd="10dp" />
+                android:tint="@color/secondry_color"
+                app:cb_color="#efefef"
+                app:cb_pressedRingWidth="3dip" />
 
 
             <TextView
-                android:layout_below="@+id/AboutButton"
                 android:id="@+id/tv_Boost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/AboutButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
                 android:text="About"
                 android:textColor="#444"
-                android:gravity="center"
-                android:layout_marginTop="3dp"
-                android:layout_centerHorizontal="true"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"
+         />
+
             <RelativeLayout
                 android:id="@+id/editprofile_button_rlayout"
-                android:clickable="true"
-                android:layout_marginStart="65dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/AboutButton"
-                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/AboutButton"
+                android:clickable="true"
+                android:gravity="center">
+
                 <at.markushi.ui.CircleButton
-                    android:id="@+id/EditButton"
+                    android:id="@+id/editButton"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    app:cb_color="#efefef"
-                    android:elevation="5dp"
-                    app:cb_pressedRingWidth="3dip"
                     android:contentDescription="Edit profile"
-                    android:src="@drawable/ic_mode_edit_black_18dp"
-                    android:tint="@color/colorPrimary" />
+                    android:elevation="5dp"
+                    android:src="@drawable/ic_edit"
+                    android:tint="@color/secondry_color"
+                    app:cb_color="#efefef"
+                    app:cb_pressedRingWidth="3dip" />
+
                 <TextView
-                    android:layout_below="@+id/EditButton"
                     android:id="@+id/tv_Edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/editButton"
+                    android:layout_marginTop="3dp"
                     android:text="Edit Profile"
                     android:textAlignment="center"
                     android:textColor="#444"
-                    android:layout_marginTop="3dp"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:letterSpacing="0.05"
+                    android:lineSpacingExtra="4dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/settings_button_rlayout"
-                android:clickable="true"
-                android:layout_marginEnd="65dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="30dp"
-                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="65dp"
+                android:clickable="true"
+                android:gravity="center">
+
                 <at.markushi.ui.CircleButton
-                    android:id="@+id/DashboardButton"
+                    android:id="@+id/dashboardButton"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    app:cb_color="#efefef"
+                    android:contentDescription="dashboard"
                     android:elevation="5dp"
-                    android:contentDescription="Dashboard"
-                    app:cb_pressedRingWidth="3dip"
                     android:src="@drawable/ic_statistics"
-                    android:tint="@color/colorPrimary" />
+                    android:tint="@color/secondry_color"
+                    app:cb_color="#efefef"
+                    app:cb_pressedRingWidth="3dip" />
+
                 <TextView
-                    android:layout_below="@+id/DashboardButton"
                     android:id="@+id/settingstextview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dashboard"
-                    android:textColor="#444"
+                    android:layout_below="@+id/dashboardButton"
                     android:layout_marginStart="4dp"
-                    android:textAlignment="center"
                     android:layout_marginTop="3dp"
-                    android:textSize="12sp" />
+                    android:text="Dashboard"
+                    android:textAlignment="center"
+                    android:textColor="#444"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:letterSpacing="0.05"
+                    android:lineSpacingExtra="4dp"/>
             </RelativeLayout>
         </RelativeLayout>
 
@@ -169,6 +195,7 @@
             android:clickable="true"
             android:background="?attr/selectableItemBackground"
             android:paddingEnd="10dp"
+
             android:gravity="center_vertical"
             android:layout_height="wrap_content">
             <ImageView
@@ -181,6 +208,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="5dp"
+
                 android:scaleType="centerCrop" />
             <TextView
                 android:id="@+id/St_1"
@@ -193,7 +221,11 @@
                 android:gravity="start"
                 android:layout_marginStart="5dp"
                 android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
             <TextView
                 android:id="@+id/d_1"
                 android:layout_width="wrap_content"
@@ -206,7 +238,11 @@
                 android:gravity="start"
                 android:layout_marginStart="5dp"
                 android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/StsecoundLayout"
@@ -242,7 +278,11 @@
                 android:gravity="start"
                 android:layout_marginStart="5dp"
                 android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
             <TextView
                 android:id="@+id/d_2"
                 android:layout_width="wrap_content"
@@ -255,7 +295,11 @@
                 android:gravity="start"
                 android:layout_marginStart="5dp"
                 android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/StthirdLayout"
@@ -274,6 +318,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_help"
+
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="0dp"
                 android:layout_centerVertical="true"
@@ -291,7 +336,11 @@
                 android:gravity="start"
                 android:layout_marginStart="5dp"
                 android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
             <TextView
                 android:id="@+id/d_3"
                 android:layout_width="wrap_content"
@@ -304,7 +353,11 @@
                 android:gravity="start"
                 android:layout_marginStart="5dp"
                 android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
         </RelativeLayout>
 
 
@@ -342,7 +395,11 @@
                 android:gravity="start"
                 android:layout_marginStart="5dp"
                 android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
             <TextView
                 android:id="@+id/d_31"
                 android:layout_width="wrap_content"
@@ -355,7 +412,11 @@
                 android:gravity="start"
                 android:layout_marginStart="5dp"
                 android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
         </RelativeLayout>
 
 
@@ -371,42 +432,21 @@
             android:padding="5dp"
             android:gravity="center_vertical"
             android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/StImage32"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_privacy"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="0dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="5dp"
-                android:scaleType="centerCrop" />
-            <TextView
-                android:id="@+id/St_32"
+
+            <Button
+                android:id="@+id/logoutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#444"
-                android:layout_toEndOf="@+id/StImage32"
-                android:layout_marginEnd="15dp"
-                android:text="Privacy Poilcy"
-                android:gravity="start"
-                android:layout_marginStart="5dp"
-                android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
-            <TextView
-                android:id="@+id/d_32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#777"
-                android:layout_toEndOf="@+id/StImage32"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="25dp"
-                android:text="App Terms and Policies"
-                android:gravity="start"
-                android:layout_marginStart="5dp"
-                android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="@color/secondry_color"
+                android:text="Logout"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="4dp"/>
+
         </RelativeLayout>
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

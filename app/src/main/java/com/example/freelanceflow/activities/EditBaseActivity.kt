@@ -1,11 +1,10 @@
 package com.example.freelanceflow.activities
 
+
 import android.os.Bundle
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import com.example.freelanceflow.R
 
 abstract class EditBaseActivity<T> : AppCompatActivity() {
@@ -24,11 +23,11 @@ abstract class EditBaseActivity<T> : AppCompatActivity() {
         } ?: run {
             setupUIForCreate()
         }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_edit, menu)
-        return true
+        val saveButton: Button = findViewById(R.id.saveBasicButton)
+        saveButton.setOnClickListener {
+            saveAndExit(data)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -37,12 +36,6 @@ abstract class EditBaseActivity<T> : AppCompatActivity() {
                 finish()
                 true
             }
-
-            R.id.ic_save -> {
-                saveAndExit(data)
-                true
-            }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -51,9 +44,9 @@ abstract class EditBaseActivity<T> : AppCompatActivity() {
 
     protected abstract fun setupUIForCreate()
 
-    protected abstract fun setupUIForEdit(@NonNull data: T)
+    protected abstract fun setupUIForEdit(data: T)
 
-    protected abstract fun saveAndExit(@Nullable data: T?)
+    protected abstract fun saveAndExit(data: T?)
 
     protected abstract fun initializeData(): T?
 }

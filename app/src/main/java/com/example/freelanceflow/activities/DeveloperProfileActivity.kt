@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -29,6 +30,7 @@ import com.example.freelanceflow.model.Project
 import com.example.freelanceflow.util.DateUtils
 import com.example.freelanceflow.util.ImageUtils
 import com.example.freelanceflow.util.ModelUtils
+import com.google.firebase.database.FirebaseDatabase
 import com.itextpdf.io.image.ImageDataFactory
 import com.itextpdf.kernel.colors.ColorConstants
 import com.itextpdf.kernel.colors.DeviceRgb
@@ -79,7 +81,7 @@ class DeveloperProfileActivity : AppCompatActivity() {
         supportActionBar?.hide()
         loadData()
         setupUI()
-        openAccountFragment()
+//        openAccountFragment()
 
 
     }
@@ -90,6 +92,8 @@ class DeveloperProfileActivity : AppCompatActivity() {
             when (requestCode) {
                 REQ_CODE_EDIT_BASIC_INFO -> {
                     val basicInfo = data?.getParcelableExtra<BasicInfo>(BasicInfoEditActivity.KEY_BASIC_INFO)
+                    Log.d("DeveloperProfileActivity", "Received updated data: $basicInfo")
+
                     updateBasicInfo(basicInfo)
                 }
                 REQ_CODE_EDIT_EDUCATION -> {
@@ -124,7 +128,7 @@ class DeveloperProfileActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-       setContentView(R.layout.activity_developer_profile)
+        setContentView(R.layout.activity_developer_profile)
         findViewById<Button>(R.id.btnResume).setOnClickListener{
             checkStoragePermission()
 
@@ -157,15 +161,26 @@ class DeveloperProfileActivity : AppCompatActivity() {
 
     private fun setupBasicInfo() {
         findViewById<TextView>(R.id.name).text = if (basicInfo.name.isNullOrEmpty()) "Your name" else basicInfo.name
-        findViewById<TextView>(R.id.email).text = if (basicInfo.email.isNullOrEmpty()) "Your email" else basicInfo.email
-
+     //   findViewById<TextView>(R.id.email).text = if (basicInfo.email.isNullOrEmpty()) "Your email" else basicInfo.email
         val userPicture = findViewById<ImageView>(R.id.user_picture)
         basicInfo.imageUri?.let { ImageUtils.loadImage(this, it, userPicture) }
             ?: userPicture.setImageResource(R.drawable.user_ghost)
 
         findViewById<View>(R.id.edit_basic_info).setOnClickListener {
             val intent = Intent(this@DeveloperProfileActivity, BasicInfoEditActivity::class.java)
-            intent.putExtra(BasicInfoEditActivity.KEY_BASIC_INFO, basicInfo)
+            // Pass all the basic info including additional fields
+            val editedBasicInfo = BasicInfo(
+                basicInfo.name,
+                basicInfo.email,
+                basicInfo.phone,
+                basicInfo.language,
+                basicInfo.street,
+                basicInfo.zipcode,
+                basicInfo.imageUri
+            )
+            val databaseReference = FirebaseDatabase.getInstance().getReference("users")
+            databaseReference.setValue(editedBasicInfo)
+            intent.putExtra(BasicInfoEditActivity.KEY_BASIC_INFO, editedBasicInfo)
             startActivityForResult(intent, REQ_CODE_EDIT_BASIC_INFO)
         }
     }
@@ -360,20 +375,7 @@ class DeveloperProfileActivity : AppCompatActivity() {
             }).check()
     }
 
-    private fun openAccountFragment() {
-        val accountFragment = AccountFragment.newInstance(
-            basicInfo,
-            educations,
-            experiences,
-            projects
-        )
 
-        val fragmentManager = supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainer, accountFragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
 
 
     private fun createResume() {
@@ -452,11 +454,5 @@ class DeveloperProfileActivity : AppCompatActivity() {
         document.close()
         Toast.makeText(this@DeveloperProfileActivity, "PDF Downloaded", Toast.LENGTH_SHORT).show()
     }
-
-
-
-
-
-
 
 }

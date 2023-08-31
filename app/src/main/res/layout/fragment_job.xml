@@ -10,13 +10,14 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.JobFragment">
+        tools:context=".fragments.JobFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:liftOnScroll="true">
+            app:liftOnScroll="true"
+            android:background="@color/white">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -28,7 +29,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/toolbarConstraintLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/appTitle"
@@ -38,25 +40,41 @@
                         android:gravity="center_horizontal"
                         android:textColor="@color/black"
                         android:textStyle="bold"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/_20sdp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:layout_margin="8dp">
+                        android:layout_margin="@dimen/_8sdp">
 
                     </com.google.android.material.textview.MaterialTextView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.MaterialToolbar>
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Search for jobs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appTitle"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:iconifiedByDefault="false"
+                app:searchIcon="@drawable/baseline_search_24"
+                app:closeIcon="@drawable/baseline_close_24"
+                android:background="@color/third_color"
+                />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvNotes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
             android:clipToPadding="false"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:listitem="@layout/job_layout_adpater">

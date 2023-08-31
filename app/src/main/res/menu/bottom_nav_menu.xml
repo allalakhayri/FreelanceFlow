@@ -3,7 +3,10 @@
 
 
 
-
+    <item android:id="@+id/homeFragment"
+        android:title="Home"
+        android:icon="@drawable/baseline_home_24">
+    </item>
     <item android:id="@+id/jobFragment"
         android:title="Jobs"
         android:icon="@drawable/ic_baseline_job_24">
@@ -21,10 +24,7 @@
         android:icon="@drawable/ic_baseline_newspaper_24">
     </item>
 
-    <item android:id="@+id/messagesFragment"
-        android:title="Messages"
-        android:icon="@drawable/baseline_message_24">
-    </item>
+
 
     <item android:id="@+id/accountFragment"
         android:title="Profile"
